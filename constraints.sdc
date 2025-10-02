@@ -1,5 +1,5 @@
 # Clock constraint
-create_clock -period 13.1 [get_ports clk]
+create_clock -period 12.66 [get_ports clk]
 
 # Input delays
 set_input_delay -clock [get_clocks clk] 2.0 [get_ports {nickel dime cancel rst}]

@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module vending_machine_mealy_tb;
+module vending_machine_tb;
     // Testbench signals
     reg clk;
     reg rst;
@@ -32,12 +32,14 @@ module vending_machine_mealy_tb;
         forever #5 clk = ~clk;
     end
     
-    // Test sequence
     initial begin
         // Generate VCD file for waveform viewing
         $dumpfile("vending_machine.vcd");
-        $dumpvars(0, vending_machine_mealy_tb);
-        
+        $dumpvars(0, vending_machine_tb);
+    end
+
+    // Test sequence
+    initial begin   
         // Initialize inputs
         rst = 0;
         nickel = 0;
@@ -351,8 +353,8 @@ module vending_machine_mealy_tb;
     
     // Monitor outputs - simplified like original
     always @(posedge clk) begin
-        $display("Time=%0t | State=%b | Item=%b | vend=%b change_5C=%b change_10C=%b", 
-                 $time, uut.ps, uut.selected_item, vend, change_5C, change_10C);
+        $display("Time=%0t | State=%b | vend=%b change_5C=%b change_10C=%b", 
+                 $time, uut.ps, vend, change_5C, change_10C);
         
         if (vend) begin
             if (change_5C)
